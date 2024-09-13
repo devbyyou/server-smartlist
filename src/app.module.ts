@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 
 import { ProduitsModule } from './produits/produits.module';
 import { AuthModule } from './auth/auth.module';
+import { ListesCoursesModule } from './listes-courses/listes-courses.module';
 
 
 @Module({
@@ -13,7 +14,7 @@ import { AuthModule } from './auth/auth.module';
     ConfigModule.forRoot({
       isGlobal: true, // Rendre ConfigModule global, pas besoin de l'importer dans d'autres modules
     }),
-    DatabaseModule, ProduitsModule, AuthModule
+    DatabaseModule, ProduitsModule, AuthModule, ListesCoursesModule
   ],
   controllers: [AppController],
   providers: [AppService],
