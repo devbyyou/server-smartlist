@@ -7,6 +7,8 @@ import { ConfigModule } from '@nestjs/config';
 import { ProduitsModule } from './produits/produits.module';
 import { AuthModule } from './auth/auth.module';
 import { ListesCoursesModule } from './listes-courses/listes-courses.module';
+import { AxiosModule } from './axios/axios.module';
+import { OpenfoodfactsModule } from './openfoodfacts/openfoodfacts.module';
 
 
 @Module({
@@ -14,7 +16,7 @@ import { ListesCoursesModule } from './listes-courses/listes-courses.module';
     ConfigModule.forRoot({
       isGlobal: true, // Rendre ConfigModule global, pas besoin de l'importer dans d'autres modules
     }),
-    DatabaseModule, ProduitsModule, AuthModule, ListesCoursesModule
+    DatabaseModule, ProduitsModule, AuthModule, ListesCoursesModule, AxiosModule, OpenfoodfactsModule
   ],
   controllers: [AppController],
   providers: [AppService],

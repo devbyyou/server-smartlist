@@ -1,13 +1,4 @@
-/* eslint-disable prettier/prettier */
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ProduitsService } from './produits.service';
 import { Prisma } from '@prisma/client';
 
@@ -41,5 +32,11 @@ export class ProduitsController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.produitsService.remove(+id);
+  }
+
+  // Nouvelle route pour rechercher des produits via Open Food Facts
+  @Get('search')
+  search(@Query('q') query: string) {
+    return this.produitsService.searchProductFromOpenFoodFacts(query);
   }
 }

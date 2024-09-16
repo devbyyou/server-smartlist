@@ -1,17 +1,25 @@
-/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { DatabaseService } from '../database/database.service';
+import { OpenfoodfactsService } from '../openfoodfacts/openfoodfacts.service';
 
 @Injectable()
 export class ProduitsService {
-  constructor(private readonly databaseService: DatabaseService) {}
+  constructor(
+    private readonly databaseService: DatabaseService,
+    private readonly openFoodFactsService: OpenfoodfactsService
+  ) { }
 
   // Créer un produit
   async create(createProductDto: Prisma.ProduitCreateInput) {
     return this.databaseService.produit.create({
       data: createProductDto,
     });
+  }
+
+  // Rechercher des produits via Open Food Facts
+  async searchProductFromOpenFoodFacts(query: string) {
+    return this.openFoodFactsService.searchProduct(query);
   }
 
   // Récupérer tous les produits
@@ -30,7 +38,7 @@ export class ProduitsService {
         id,
       },
       include: {
-        categorie: true, // Inclure la catégorie pour chaque produit
+        categorie: true,
       },
     });
   }
