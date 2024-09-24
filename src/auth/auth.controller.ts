@@ -13,14 +13,14 @@ export class AuthController {
         if (user) {
             return this.authService.login(user);
         }
-        return { error: 'Invalid credentials' };
+        return { error: 'Password or Email is invalid try again or Sign up' };
     }
 
     @Post('register')
-    async register(@Body() body: { email: string; password: string }) {
+    async register(@Body() body: { email: string; password: string; name?: string }) {
         return this.authService.register(body);
     }
-  // Route protégée par JWT pour obtenir les informations du profil utilisateur
+    // Route protégée par JWT pour obtenir les informations du profil utilisateur
 
     @UseGuards(JwtAuthGuard)
     @Post('profile')

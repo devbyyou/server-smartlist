@@ -7,7 +7,6 @@ import { OpenfoodfactsService } from '../openfoodfacts/openfoodfacts.service';
 export class ProduitsService {
   constructor(
     private readonly databaseService: DatabaseService,
-    private readonly openFoodFactsService: OpenfoodfactsService
   ) { }
 
   // Créer un produit
@@ -15,11 +14,6 @@ export class ProduitsService {
     return this.databaseService.produit.create({
       data: createProductDto,
     });
-  }
-
-  // Rechercher des produits via Open Food Facts
-  async searchProductFromOpenFoodFacts(query: string) {
-    return this.openFoodFactsService.searchProduct(query);
   }
 
   // Récupérer tous les produits

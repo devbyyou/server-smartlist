@@ -27,20 +27,38 @@ export class AuthService {
 
     // Génération du JWT
     async login(user: any) {
+        const logged = true;
         const payload = { username: user.email, sub: user.id };
+
         return {
             access_token: this.jwtService.sign(payload),
+            logged
         };
     }
 
     // Inscription d'un nouvel utilisateur
     async register(createUserInput: Prisma.UtilisateurCreateInput) {
         const hashedPassword = await bcrypt.hash(createUserInput.password, 10);
-        return this.databaseService.utilisateur.create({
-            data: {
-                email: createUserInput.email,
-                password: hashedPassword,
-            },
+        const user = await this.databaseService.utilisateur.findUnique({
+            where: { email: createUserInput.email },
         });
+        try {
+
+            if (!user) {
+                return this.databaseService.utilisateur.create({
+                data: {
+                    email: createUserInput.email,
+                    name: createUserInput.name,
+                    password: hashedPassword,
+                },
+                });    
+            } else {
+
+                return { error: 'Cet utilisateur existe déjà !' };
+            }
+        } catch (error) {
+
+            return { error: 'Veuillez vérifier les champs' };
+        }
     }
 }

@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Body, Param, Delete, Patch, UseGuards, Req } from '@nestjs/common';
 import { ListesCoursesService } from './listes-courses.service';
 import { JwtAuthGuard } from '../auth/jwt-auth/jwt-auth.guard';
-import { Prisma } from '@prisma/client';  // Importer Prisma pour typer les entrées
+import { Prisma } from '@prisma/client'; 
 
-@UseGuards(JwtAuthGuard)  // Si tu utilises le Guard JWT pour protéger ces routes
+@UseGuards(JwtAuthGuard)  
 @Controller('listes-de-courses')
 export class ListesCoursesController {
     constructor(private readonly listesDeCoursesService: ListesCoursesService) { }

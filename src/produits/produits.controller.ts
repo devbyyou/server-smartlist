@@ -34,9 +34,4 @@ export class ProduitsController {
     return this.produitsService.remove(+id);
   }
 
-  // Nouvelle route pour rechercher des produits via Open Food Facts
-  @Get('search')
-  search(@Query('q') query: string) {
-    return this.produitsService.searchProductFromOpenFoodFacts(query);
-  }
 }
