@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Body, Param, Delete, Patch, UseGuards, Req } from '@nestjs/common';
 import { ListesCoursesService } from './listes-courses.service';
 import { JwtAuthGuard } from '../auth/jwt-auth/jwt-auth.guard';
-import { Prisma } from '@prisma/client'; 
+import { Prisma } from '@prisma/client';
 
-@UseGuards(JwtAuthGuard)  
+// @UseGuards(JwtAuthGuard)  
 @Controller('listes-de-courses')
 export class ListesCoursesController {
     constructor(private readonly listesDeCoursesService: ListesCoursesService) { }
@@ -11,7 +11,7 @@ export class ListesCoursesController {
     @Post()
     create(@Body() createListDto: Prisma.ListDeCourseCreateInput) {
         // Appel direct à Prisma via le service, en passant les données envoyées
-        return this.listesDeCoursesService.create(createListDto);        
+        return this.listesDeCoursesService.create(createListDto);
     }
 
     @Get()
@@ -21,9 +21,12 @@ export class ListesCoursesController {
     }
 
     @Get(':id')
-    findOne(@Param('id') id: string) {
+    findOne(@Param('id') id: any) {
+
+        console.log('id --------------->', id);
+
         // Récupérer une liste de courses spécifique via son ID
-        return this.listesDeCoursesService.findOne(+id);
+        return this.listesDeCoursesService.findOne(id);
     }
 
     @Patch(':id')

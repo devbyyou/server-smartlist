@@ -21,6 +21,16 @@ export class AxiosService {
             throw error;
         }
     }
+    // Méthode pour effectuer des requêtes GETBy ID
+    async getById(url: string, params?: any) {
+        try {
+            const response = await this.axiosInstance.get(url);
+            return response.data;
+        } catch (error) {
+            console.log('tu es passer dans le catch Error AxiosService');
+            throw error;
+        }
+    }
     // Méthode pour effectuer des requêtes POST (si besoin plus tard)
     async post(url: string, data: any) {
         try {

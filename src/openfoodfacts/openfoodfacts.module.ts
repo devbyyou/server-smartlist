@@ -6,9 +6,9 @@ import { DatabaseModule } from 'src/database/database.module';
 import { AxiosService } from 'src/axios/axios.service';
 
 @Module({
+  controllers: [OpenfoodfactsController],
+  providers: [OpenfoodfactsService],
   imports: [AxiosModule, DatabaseModule], // Importer AxiosModule pour que AxiosService soit disponible
-  providers: [OpenfoodfactsService, AxiosModule, AxiosService],
-  exports: [OpenfoodfactsService],
-  controllers: [OpenfoodfactsController]
+  exports: [OpenfoodfactsService]
 })
 export class OpenfoodfactsModule { }

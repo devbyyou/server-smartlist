@@ -6,8 +6,7 @@ import { AxiosService } from '../axios/axios.service';
 export class OpenfoodfactsService {
     constructor(
         private readonly axiosService: AxiosService,
-        // private readonly openFoodFactsService: OpenfoodfactsService,
-        // private readonly databaseService: DatabaseService
+    
     ) { }
 
     // Méthode pour rechercher des produits par nom via Open Food Facts
@@ -24,6 +23,10 @@ export class OpenfoodfactsService {
         return this.axiosService.post(`/produits`, productData);
     }
 
+    async getProductById(productId: string) {
+        // Forme correcte de l'URL pour récupérer un produit par ID
+        return this.axiosService.getById(`api/v0/produit/${productId}.json`);
+    }
     //   // Mettre à jour un produit (PATCH)
     //   async updateProduct(productId: string, updateData: any) {
     //     return this.axiosService.patch(`/produits/${productId}`, updateData);

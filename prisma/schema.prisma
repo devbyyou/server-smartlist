@@ -24,19 +24,30 @@ model ListDeCourse {
     utilisateur Utilisateur @relation(fields: [userId], references: [id], onDelete: Cascade) // Utilisateur est obligatoire
 }
 
+// model Produit {
+//     id             Int           @id @default(autoincrement())
+//     nom            String
+//     categorieId    Int // Clé étrangère vers la catégorie
+//     quantite       Int
+//     listDeCourseId Int? // Relation facultative avec la liste de courses
+//     categorie      Categorie     @relation(fields: [categorieId], references: [id], onDelete: Cascade) // Relation avec catégorie
+//     listDeCourse   ListDeCourse? @relation(fields: [listDeCourseId], references: [id])
+//     // Produit facultatif dans une liste
+// }
+
+model Categorie {
+    id       Int       @id @default(autoincrement())
+    nom      String    @unique
+    produits Produit[] // Relation avec les produits
+}
+
 model Produit {
     id             Int           @id @default(autoincrement())
     nom            String
     categorieId    Int // Clé étrangère vers la catégorie
     quantite       Int
+    image          String?
     listDeCourseId Int? // Relation facultative avec la liste de courses
-    categorie      Categorie     @relation(fields: [categorieId], references: [id], onDelete: Cascade) // Relation avec catégorie
+    categorie      Categorie     @relation(fields: [categorieId], references: [id]) // Relation avec catégorie
     listDeCourse   ListDeCourse? @relation(fields: [listDeCourseId], references: [id])
-    // Produit facultatif dans une liste
-}
-
-model Categorie {
-    id       Int       @id @default(autoincrement())
-    nom      String
-    produits Produit[] // Relation avec les produits
 }
