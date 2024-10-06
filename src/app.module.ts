@@ -10,6 +10,7 @@ import { ListesCoursesModule } from './listes-courses/listes-courses.module';
 import { AxiosModule } from './axios/axios.module';
 import { OpenfoodfactsModule } from './openfoodfacts/openfoodfacts.module';
 import { CategorieModule } from './categorie/categorie.module';
+import { UtilisateurModule } from './utilisateur/utilisateur.module';
 
 
 @Module({
@@ -17,7 +18,7 @@ import { CategorieModule } from './categorie/categorie.module';
     ConfigModule.forRoot({
       isGlobal: true, // Rendre ConfigModule global, pas besoin de l'importer dans d'autres modules
     }),
-    DatabaseModule, ProduitsModule, AuthModule, ListesCoursesModule, AxiosModule, OpenfoodfactsModule, CategorieModule
+    DatabaseModule, ProduitsModule, AuthModule, ListesCoursesModule, AxiosModule, OpenfoodfactsModule, CategorieModule, UtilisateurModule
   ],
   controllers: [AppController],
   providers: [AppService],

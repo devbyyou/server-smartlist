@@ -8,7 +8,7 @@ export class AxiosService {
     constructor() {
         this.axiosInstance = axios.create({
             baseURL: 'https://fr.openfoodfacts.org/', // Peut être modifié ici si besoin
-            timeout: 80000, // Timeout pour éviter les requêtes trop longues
+            timeout: 8000, // Timeout pour éviter les requêtes trop longues
         });
     }
     // Méthode pour effectuer des requêtes GET

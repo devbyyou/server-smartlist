@@ -10,7 +10,6 @@ export class ProduitsService {
     private readonly databaseService: DatabaseService,
     private readonly openFoodFactsService: OpenfoodfactsService,
     private readonly categorieService: CategorieService,
-
   ) { }
   // Créer une liste de courses et y ajouter un produit
   async createListWithProduct(data: any) {
@@ -18,8 +17,8 @@ export class ProduitsService {
     const userId: number = data.userId
     const produitId: string = data.produitId
 
-    console.log("data 2 ----->", data);
-    console.log("userId & produitId -------->", userId, produitId);
+    // console.log("data 2 ----->", data);
+    // console.log("userId & produitId -------->", userId, produitId);
 
     // Vérifier si une liste de courses existe pour cet utilisateur
     let list = await this.databaseService.listDeCourse.findFirst({
@@ -46,11 +45,11 @@ export class ProduitsService {
       // Extraire les catégories de l'API et les convertir en tableau
       const categoriesApi = produitFromApi.product.categories?.split(',').map((cat: string) => cat.trim()) || [];
 
-      console.log("categoriesApi --------->", categoriesApi);
+      // console.log("categoriesApi --------->", categoriesApi);
       // Trouver ou créer une catégorie correspondante 
       const categorieId = await this.categorieService.getOrCreateCategorieId(categoriesApi);
 
-      console.log("categorieId --------->", categorieId);
+      // console.log("categorieId --------->", categorieId);
       // Créer le produit avec les informations récupérées de l'API
       produit = await this.databaseService.produit.create({
         data: {
@@ -133,7 +132,7 @@ export class ProduitsService {
   async findAll() {
     return this.databaseService.produit.findMany({
       include: {
-        categorie: true, // Inclure la catégorie associée
+        categorie: true, 
       },
     });
   }

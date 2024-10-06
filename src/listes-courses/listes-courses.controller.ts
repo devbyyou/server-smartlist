@@ -23,7 +23,7 @@ export class ListesCoursesController {
     @Get(':id')
     findOne(@Param('id') id: any) {
 
-        console.log('id --------------->', id);
+        // console.log('id --------------->', id);
 
         // Récupérer une liste de courses spécifique via son ID
         return this.listesDeCoursesService.findOne(id);
@@ -35,9 +35,9 @@ export class ListesCoursesController {
         return this.listesDeCoursesService.update(+id, updateData);
     }
 
-    @Delete(':id')
-    remove(@Param('id') id: string) {
+    @Delete(':id/:listDeCourseId')
+    remove(@Param('id') id: string, @Param('listDeCourseId') listDeCourseId: string) {
         // Supprimer une liste de courses via son ID
-        return this.listesDeCoursesService.remove(+id);
+        return this.listesDeCoursesService.remove(id, listDeCourseId);
     }
 }

@@ -7,20 +7,16 @@ export class ListesCoursesService {
     constructor(private readonly databaseService: DatabaseService) { }
 
     async create(data: Prisma.ListDeCourseCreateInput) {
-        console.log('data----------->', data);
 
         return this.databaseService.listDeCourse.create({ data });
     }
-
 
     async findAll() {
         return this.databaseService.listDeCourse.findMany();
     }
 
-
     async findOne(id: any) {
-
-        console.log('id 2 -------->', id);
+        // console.log('id 2 -------->', id);
         const parseId = parseInt(id)
         try {
             return this.databaseService.listDeCourse.findFirst({
@@ -31,7 +27,7 @@ export class ListesCoursesService {
                 },
             });
         } catch (error) {
-            return { error: 'Erreur lors du find list  ' }
+            return { error: 'Erreur lors du find list' }
         }
     }
 
@@ -42,9 +38,16 @@ export class ListesCoursesService {
         });
     }
 
-    async remove(id: number) {
-        return this.databaseService.listDeCourse.delete({
-            where: { id },
+    async remove(id: string, listDeCourseId: string) {
+
+        const produitIdInt = parseInt(id, 10);
+        const listId = parseInt(listDeCourseId, 10);
+
+        return this.databaseService.produit.delete({
+            where: {
+                id: produitIdInt,
+                listDeCourseId: listId
+            },
         });
     }
 }

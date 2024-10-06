@@ -19,7 +19,6 @@ export class ProduitsController {
     return this.produitsService.createListWithProduct(data);
   }
 
-
   @Get()
   findAll() {
     return this.produitsService.findAll();
