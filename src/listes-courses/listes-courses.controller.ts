@@ -23,7 +23,6 @@ export class ListesCoursesController {
     @Get(':id')
     findOne(@Param('id') id: any) {
 
-        // console.log('id --------------->', id);
 
         // Récupérer une liste de courses spécifique via son ID
         return this.listesDeCoursesService.findOne(id);

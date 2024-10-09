@@ -14,8 +14,7 @@ export class ProduitsController {
   // Endpoint pour ajouter un produit dans une liste de courses
   @Post('add-to-list')
   async addToList(@Body() data: any) {
-    // const {  } = addToListDto.id;
-    console.log("data 1------->", data);
+
     return this.produitsService.createListWithProduct(data);
   }
 

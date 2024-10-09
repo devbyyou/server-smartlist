@@ -16,7 +16,6 @@ export class ListesCoursesService {
     }
 
     async findOne(id: any) {
-        // console.log('id 2 -------->', id);
         const parseId = parseInt(id)
         try {
             return this.databaseService.listDeCourse.findFirst({

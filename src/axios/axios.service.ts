@@ -7,8 +7,8 @@ export class AxiosService {
 
     constructor() {
         this.axiosInstance = axios.create({
-            baseURL: 'https://fr.openfoodfacts.org/', // Peut être modifié ici si besoin
-            timeout: 8000, // Timeout pour éviter les requêtes trop longues
+            baseURL: 'https://fr.openfoodfacts.org/', 
+            timeout: 10000, 
         });
     }
     // Méthode pour effectuer des requêtes GET
@@ -17,7 +17,7 @@ export class AxiosService {
             const response = await this.axiosInstance.get(url, { params });
             return response.data;
         } catch (error) {
-            console.log('tu es passer dans le catch Error AxiosService');
+            console.log(error);
             throw error;
         }
     }
@@ -27,7 +27,7 @@ export class AxiosService {
             const response = await this.axiosInstance.get(url);
             return response.data;
         } catch (error) {
-            console.log('tu es passer dans le catch Error AxiosService');
+            console.log(error);
             throw error;
         }
     }

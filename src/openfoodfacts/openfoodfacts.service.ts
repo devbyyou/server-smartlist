@@ -52,6 +52,59 @@ export class OpenfoodfactsService {
         // Forme correcte de l'URL pour récupérer un produit par ID
         return this.axiosService.getById(`api/v0/produit/${productId}.json`);
     }
+    async getProductsByCategoryId(categoryId: number) {
+        // Mapping des catégories existantes dans l'API OpenFoodFacts
+        const categoryMap: { [key: number]: string[] } = {
+            11: ['fruits-frais', 'legumes-frais'],
+            12: ['pains'],
+            13: ['produits-laitiers'],
+            14: ['viandes', 'poissons'],
+            15: ['epices'],
+            16: ['plats-cuisines', 'surgeles'],
+            17: ['pates', 'riz', 'cereales'],
+            18: ['snacks'],
+            19: ['boissons'],
+        };
+
+        // Vérifier si l'ID de catégorie est présent dans le mapping
+        const categories = categoryMap[categoryId] || ['produits-divers'];
+        if (!categories) {
+            // Si l'ID de catégorie n'est pas trouvé, renvoyer un message générique
+            return { message: `Catégorie avec l'ID ${categoryId} non trouvée. Veuillez vérifier l'ID.` };
+        }
+
+        // Récupérer les produits de toutes les catégories spécifiées
+        let combinedProducts: any[] = [];
+        for (const category of categories) {
+            try {
+                const data = await this.axiosService.get(`categorie/${category}.json`);
+                if (data.products && data.products.length > 0) {
+                    combinedProducts = combinedProducts.concat(data.products);
+                }
+            } catch (error) {
+                console.warn(`Catégorie "${category}" n'a pas pu être récupérée :`, error.message);
+            }
+        }
+
+        // Filtrer et trier les produits combinés
+        const filteredProducts = combinedProducts.filter((product: any) => {
+            return product.product_name && !product.product_name.toLowerCase().includes('jus');
+        });
+
+        const sortedProducts = filteredProducts.sort((a: any, b: any) => {
+            return a.product_name?.localeCompare(b.product_name);
+        });
+
+        // Mise en cache des résultats avant de les retourner
+        this.cache.set(categories.join('-'), sortedProducts);
+
+        return sortedProducts.length > 0
+            ? sortedProducts
+            : { message: `Aucun produit trouvé pour la catégorie ${categories.join(', ')}` };
+    }
+
+
+
     //   // Mettre à jour un produit (PATCH)
     //   async updateProduct(productId: string, updateData: any) {
     //     return this.axiosService.patch(`/produits/${productId}`, updateData);
