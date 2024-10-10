@@ -3,8 +3,8 @@ import { ListesCoursesService } from './listes-courses.service';
 import { JwtAuthGuard } from '../auth/jwt-auth/jwt-auth.guard';
 import { Prisma } from '@prisma/client';
 
-// @UseGuards(JwtAuthGuard)  
-@Controller('listes-de-courses')
+@UseGuards(JwtAuthGuard)
+@Controller('api/listes-de-courses')
 export class ListesCoursesController {
     constructor(private readonly listesDeCoursesService: ListesCoursesService) { }
 

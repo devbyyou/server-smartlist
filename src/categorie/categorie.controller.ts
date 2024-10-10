@@ -3,9 +3,9 @@ import { CategorieService } from './categorie.service';
 import { Prisma } from '@prisma/client';
 
 
-@Controller('categorie')
+@Controller('api/categorie')
 export class CategorieController {
-  constructor(private readonly categorieService: CategorieService) {}
+  constructor(private readonly categorieService: CategorieService) { }
 
   @Post()
   create(@Body() createCategorieDto: Prisma.CategorieCreateInput) {

@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { OpenfoodfactsService } from './openfoodfacts.service';
 
-@Controller('search')
+@Controller('api/search')
 export class OpenfoodfactsController {
     constructor(
         private readonly openFoodFactsService: OpenfoodfactsService
