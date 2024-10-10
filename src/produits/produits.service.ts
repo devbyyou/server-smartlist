@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { DatabaseService } from '../database/database.service';
 import { OpenfoodfactsService } from '../openfoodfacts/openfoodfacts.service';
-import { CategorieService } from 'src/categorie/categorie.service';
+import { CategorieService } from '../categorie/categorie.service';
 
 @Injectable()
 export class ProduitsService {

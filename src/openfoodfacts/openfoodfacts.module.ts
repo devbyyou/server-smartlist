@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { OpenfoodfactsService } from './openfoodfacts.service';
-import { AxiosModule } from 'src/axios/axios.module';
+import { AxiosModule } from '../axios/axios.module';
 import { OpenfoodfactsController } from './openfoodfacts.controller';
-import { DatabaseModule } from 'src/database/database.module';
-import { AxiosService } from 'src/axios/axios.service';
+import { DatabaseModule } from '../database/database.module';
+import { AxiosService } from '../axios/axios.service';
 
 @Module({
   controllers: [OpenfoodfactsController],

@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { UtilisateurService } from './utilisateur.service';
-import { DatabaseService } from 'src/database/database.service';
+import { DatabaseService } from '../database/database.service';
 import { Prisma } from '@prisma/client';
-import { JwtAuthGuard } from 'src/auth/jwt-auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth/jwt-auth.guard';
 
 @UseGuards(JwtAuthGuard)
 @Controller('api/utilisateur')
