@@ -55,15 +55,15 @@ export class OpenfoodfactsService {
     async getProductsByCategoryId(categoryId: number) {
         // Mapping des catégories existantes dans l'API OpenFoodFacts
         const categoryMap: { [key: number]: string[] } = {
-            11: ['fruits-frais', 'legumes-frais'],
-            12: ['pains'],
-            13: ['produits-laitiers'],
-            14: ['viandes', 'poissons'],
-            15: ['epices'],
-            16: ['plats-cuisines', 'surgeles'],
-            17: ['pates', 'riz', 'cereales'],
-            18: ['snacks'],
-            19: ['boissons'],
+            1: ['fruits-frais', 'legumes-frais'],
+            2: ['pains'],
+            3: ['produits-laitiers'],
+            4: ['viandes', 'poissons'],
+            5: ['epices'],
+            6: ['plats-cuisines', 'surgeles'],
+            7: ['pates', 'riz', 'cereales'],
+            8: ['snacks'],
+            9: ['boissons'],
         };
 
         // Vérifier si l'ID de catégorie est présent dans le mapping
